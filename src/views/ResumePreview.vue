@@ -1,29 +1,32 @@
-<script setup></script>
-<template>
+<script setup>
+import {data} from '../data/data'
+import { RouterLink } from 'vue-router';
+</script>
+<template>    
     <div class="bg-gray-100 h-full w-screen flex justify-center">
+        <RouterLink to="/builder" class="bg-blue-500 py-2 px-5 rounded w-max h-max">Back to Builder</RouterLink>
+        <button class="py-2 px-5 bg-blue-600 text-white rounded-sm h-max ml-5">Print</button>
         <div class="w-[960px] h-[1160px] bg-white m-10 p-10 rounded-md">
             <div class="mb-10">
-                <h1 class="text-3xl font-bold">Mehedi Jaman</h1>
-                <p class="">Full Stack Developer</p>
-                <p class="">Khulna Bangladesh</p>
+                <h1 class="text-3xl font-bold">{{ data.basics.name }}</h1>
+                <p class="">{{ data.basics.title }}</p>
+                <p class="">{{ data.basics.location.city }}, {{ data.basics.location.country }}"</p>
             </div>
             <div class="border-4 border-gray-400 my-3"></div>
             <div class="flex gap-5">
                 <!-- Left  -->
                 <div class="w-1/2 flex flex-col gap-2">
                     <div>
-                        <p><span class="font-bold">Portfolio :</span> <a href="http://me.mehedipata.com">me.mehedipata.com ↗</a></p>
-                        <p><span class="font-bold">Github :</span> <a href="https://github.com/mehedijaman">mehedijaman ↗</a></p>
-                        <p><span class="font-bold">Email :</span> <a href="">mail4mjaman@gmail.com ↗</a></p>
-                        <p><span class="font-bold">Phone :</span> <a href="">+880 1914090747 ↗</a></p>
+                        <p><span class="font-bold">Portfolio :</span> <a :href="`https://${data.basics.portfolio}`">{{ data.basics.portfolio}} ↗</a></p>
+                        <!-- <p><span class="font-bold">Github :</span> <a :href="`https://github.com/${data.basics.github}`">{{ data.basics.github }} ↗</a></p> -->
+                        <p><span class="font-bold">Email :</span> <a href="">{{ data.basics.email }} ↗</a></p>
+                        <p><span class="font-bold">Phone :</span> <a href="">{{ data.basics.phone }} ↗</a></p>
                     </div>
                     <div class="border-4 border-gray-400"></div>
                     <!-- Career Summary -->
                     <div>
                         <h1 class="font-bold uppercase">Summary</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quasi obcaecati repellat ea labore possimus corporis nesciunt natus ullam nobis suscipit, quaerat, sequi necessitatibus. Accusantium quisquam nam illo cupiditate eligendi!
-                        </p>
+                        <p>{{ data.basics.summary }}</p>
                     </div>
                     <div class="border-4 border-gray-400"></div>
 
@@ -58,22 +61,13 @@
                     <div>
                         <h1 class="font-bold uppercase">Skills</h1>
                         <div class="flex flex-wrap gap-2 font-bold">             
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit print:bg-white print:text-black print:border-2 ">PHP</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">MySQL</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Laravel</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Vue.js 3</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Github</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Docker</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">HTML</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">CSS</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Linux</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">ChatGPT</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Google Bard</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Stack Overflow</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">NoSQL</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">AWS</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Redis</div>
-                            <div class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">Laravel Forge</div>
+                            <div v-for="(language,index) in data.skills.languages" :key="index" class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">{{ language.name }}</div>
+                            <div v-for="(framework,index) in data.skills.frameworks" :key="index" class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">{{ framework.name }}</div>
+                            <div v-for="(technology,index) in data.skills.technologies" :key="index" class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">{{ technology.name }}</div>
+                            <div v-for="(library,index) in data.skills.libraries" :key="index" class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">{{ library.name }}</div>
+                            <div v-for="(database,index) in data.skills.databases" :key="index" class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">{{ database.name }}</div>
+                            <div v-for="(practice,index) in data.skills.practices" :key="index" class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">{{ practice.name }}</div>
+                            <div v-for="(tool,index) in data.skills.tools" :key="index" class="bg-gray-900 text-white rounded-sm px-2 py-1 w-fit">{{ tool.name }}</div>
                         </div>
                     </div>
                 </div>

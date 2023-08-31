@@ -12,7 +12,12 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.15",
+    "@heroicons/vue": "^2.0.18",
+    "flowbite": "^1.8.1",
+    "flowbite-vue": "^0.0.17-next.2",
     "pinia": "^2.1.4",
+    "tw-elements": "^1.0.0-beta3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
